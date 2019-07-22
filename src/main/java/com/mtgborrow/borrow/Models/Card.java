@@ -56,9 +56,9 @@ public class Card {
     private String originalText;
     private String originalType;
     private String power;
-    private Map<String, Float> prices;
+//    private Map<String, Float> prices;
     private String[] printings;
-    private String[] purchaseUrls;
+//    private String[] purchaseUrls;
     private Object[] rulings;
     private String scryfallId;
     private String scryfallOracleId;
@@ -473,13 +473,13 @@ public class Card {
         this.power = power;
     }
 
-    public Map<String, Float> getPrices() {
-        return prices;
-    }
+//    public Map<String, Float> getPrices() {
+//        return prices;
+//    }
 
-    public void setPrices(Map<String, Float> prices) {
-        this.prices = prices;
-    }
+//    public void setPrices(Map prices) {
+//        this.prices = null;
+//    }
 
     public String[] getPrintings() {
         return printings;
@@ -489,13 +489,13 @@ public class Card {
         this.printings = printings;
     }
 
-    public String[] getPurchaseUrls() {
-        return purchaseUrls;
-    }
+//    public String[] getPurchaseUrls() {
+//        return purchaseUrls;
+//    }
 
-    public void setPurchaseUrls(String[] purchaseUrls) {
-        this.purchaseUrls = purchaseUrls;
-    }
+//    public void setPurchaseUrls(String[] purchaseUrls) {
+//        this.purchaseUrls = purchaseUrls;
+//    }
 
     public Object[] getRulings() {
         return rulings;

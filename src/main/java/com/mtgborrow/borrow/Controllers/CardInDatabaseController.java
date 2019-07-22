@@ -2,11 +2,10 @@ package com.mtgborrow.borrow.Controllers;
 
 
 import com.mtgborrow.borrow.Models.Card;
+import com.mtgborrow.borrow.Models.CardInDatabase;
+import com.mtgborrow.borrow.Services.CardInDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,18 +14,23 @@ import java.util.List;
 public class CardInDatabaseController {
 
 
+    @Autowired
+    CardInDatabaseService cardInDatabaseService;
 
-//    CardInDatabaseService cardInDatabaseService;
-//
-//    @Autowired
-//    CardInDatabaseController(CardInDatabaseService cardInDatabaseService){
-//        this.cardInDatabaseService = cardInDatabaseService;
-//    }
-//
-//
-//    @PostMapping("/addcards")
-//    public void addCards(@RequestBody List<Card> toBePersisted){
-//        cardInDatabaseService.addCards(toBePersisted);
-//    }
+
+    public CardInDatabaseController(CardInDatabaseService cardInDatabaseService){
+        this.cardInDatabaseService = cardInDatabaseService;
+    }
+
+
+    @PostMapping("/addcards")
+    public void addCards(@RequestBody Card[] toBePersisted){
+        cardInDatabaseService.addCards(toBePersisted);
+    }
+
+    @GetMapping("/cards")
+    public List<CardInDatabase> getAllCards(){
+        return cardInDatabaseService.getAllCards();
+    }
 
 }
