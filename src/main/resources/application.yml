@@ -11,3 +11,21 @@
 #    properties:
 #      hibernate:
 #        dialect: org.hibernate.dialect.MySQL5Dialect
+#---
+#
+#
+#spring:
+#  profiles: cloud
+#  datasource:
+#    url: mysql://lmag6s0zwmcswp5w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/blzbn7p28zt0bkc5?reconnect=true
+#    username: cjeb8o7575se69ve
+#    password: ermrgsaf57lrspxe
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update #validate
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5Dialect
+#
+#---
