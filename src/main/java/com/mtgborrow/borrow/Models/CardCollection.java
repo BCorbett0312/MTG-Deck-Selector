@@ -9,6 +9,7 @@ import javax.persistence.Id;
 public class CardCollection {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
