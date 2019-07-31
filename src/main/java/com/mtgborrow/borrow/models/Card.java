@@ -1,4 +1,4 @@
-package com.mtgborrow.borrow.Models;
+package com.mtgborrow.borrow.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,19 +10,19 @@ public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
-    private Integer multiverseId;
+    private Long multiverseId;
 
 
     public Card() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,11 +34,11 @@ public class Card {
         this.name = name;
     }
 
-    public Integer getMultiverseId() {
+    public Long getMultiverseId() {
         return multiverseId;
     }
 
-    public void setMultiverseId(Integer multiverseId) {
+    public void setMultiverseId(Long multiverseId) {
         this.multiverseId = multiverseId;
     }
 }

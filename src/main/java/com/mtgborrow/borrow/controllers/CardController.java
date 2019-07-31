@@ -1,9 +1,10 @@
-package com.mtgborrow.borrow.Controllers;
+package com.mtgborrow.borrow.controllers;
 
 
 
-import com.mtgborrow.borrow.Models.Card;
-import com.mtgborrow.borrow.Services.CardService;
+import com.mtgborrow.borrow.models.Card;
+import com.mtgborrow.borrow.models.RequestCard;
+import com.mtgborrow.borrow.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +15,17 @@ import java.util.List;
 public class CardController {
 
 
-    @Autowired
+
     CardService cardService;
 
-
+    @Autowired
     public CardController(CardService cardService){
         this.cardService = cardService;
     }
 
 
     @PostMapping("/addcards")
-    public void addCards(@RequestBody List<Card> toBePersisted){
+    public void addCards(@RequestBody List<RequestCard> toBePersisted){
         cardService.addCards(toBePersisted);
     }
 
