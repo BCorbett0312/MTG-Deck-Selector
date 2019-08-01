@@ -4,9 +4,13 @@ package com.mtgborrow.borrow.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 @Entity
@@ -24,6 +28,10 @@ public class UserCollection implements Serializable {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User owner;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userCollection")
+    @JsonManagedReference
+    private List<PhysicalCard> physicalCards = new ArrayList<>();
 
 
 
@@ -47,5 +55,12 @@ public class UserCollection implements Serializable {
         this.owner = owner;
     }
 
+    public List<PhysicalCard> getPhysicalCards() {
+        return physicalCards;
+    }
+
+    public void setPhysicalCards(List<PhysicalCard> physicalCards) {
+        this.physicalCards = physicalCards;
+    }
 
 }

@@ -1,12 +1,10 @@
 package com.mtgborrow.borrow.repositories;
 
-import com.mtgborrow.borrow.models.User;
+import com.mtgborrow.borrow.models.FriendGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    public User getById(Long id);
-
-
+public interface FriendGroupRepository extends JpaRepository <FriendGroup, Long> {
 }

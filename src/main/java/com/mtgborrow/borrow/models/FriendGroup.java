@@ -1,10 +1,9 @@
 package com.mtgborrow.borrow.models;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
-
-
 import java.util.HashSet;
-
 import java.util.Set;
 
 
@@ -16,12 +15,24 @@ public class FriendGroup {
     @Column(name = "friend_group_id")
     private Long id;
     private String name;
-//    private Set<User> members = new HashSet<>();
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+                cascade = {CascadeType.PERSIST,
+                CascadeType.MERGE},
+                mappedBy = "groups")
+    @JsonIgnoreProperties("groups")
+    private Set<User> users = new HashSet<>();
+
+
+
 
 
 
     public FriendGroup() {
     }
+
+
 
     public Long getId() {
         return id;
@@ -37,5 +48,13 @@ public class FriendGroup {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

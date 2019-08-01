@@ -1,5 +1,6 @@
 package com.mtgborrow.borrow.controllers;
 
+import com.mtgborrow.borrow.models.RequestUser;
 import com.mtgborrow.borrow.models.User;
 import com.mtgborrow.borrow.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ UserController {
 
 
     @PostMapping("/user/new")
-    public User createNewUser(@RequestBody User user){
+    public User createNewUser(@RequestBody RequestUser user){
         return userService.createNewUser(user);
     }
 

@@ -3,12 +3,15 @@ package com.mtgborrow.borrow.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -35,6 +38,13 @@ public class User implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "owner")
     @JsonManagedReference
     private UserCollection userCollection;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "user_group", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name="friend_group_id")})
+    @JsonIgnoreProperties("users")
+    private Set<FriendGroup> groups = new HashSet<>();
+
 
 
     public User() {
@@ -73,5 +83,12 @@ public class User implements Serializable {
         this.userCollection = userCollection;
     }
 
+    public Set<FriendGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<FriendGroup> groups) {
+        this.groups = groups;
+    }
 
 }
