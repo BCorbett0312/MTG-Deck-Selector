@@ -27,7 +27,7 @@ public class CardService {
 
     public void addCards(List<RequestCard> toBeParsed){
 
-        Predicate<RequestCard> hasMultiverseId = rc -> rc.getMultiverseId() != null;
+        Predicate<RequestCard> hasMultiverseId = rc -> rc.getScryfallId() != null;
         Predicate<RequestCard> isReprint = rc -> rc.getReprint() == null;
 
         List<Card> toBePersisted = new ArrayList<>();
@@ -51,7 +51,7 @@ public class CardService {
     public Card convertFromRequestCard(RequestCard cardToConvert){
         Card converted = new Card();
         converted.setName(cardToConvert.getName());
-        converted.setMultiverseId(cardToConvert.getMultiverseId());
+        converted.setScryfallId(cardToConvert.getScryfallId());
         return converted;
     }
 

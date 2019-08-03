@@ -3,6 +3,8 @@ package com.mtgborrow.borrow.models;
 
 
 
+import com.mtgborrow.borrow.datatypes.Condition;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,10 +16,12 @@ public class Card implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long multiverseId;
 
+    private String scryfallId;
 
-
+    @Enumerated(EnumType.STRING)
+    @Column(name = "card_condition")
+    private Condition condition;
 
 
     public Card() {
@@ -39,12 +43,20 @@ public class Card implements Serializable {
         this.name = name;
     }
 
-    public Long getMultiverseId() {
-        return multiverseId;
+    public Condition getCondition() {
+        return condition;
     }
 
-    public void setMultiverseId(Long multiverseId) {
-        this.multiverseId = multiverseId;
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+
+    public String getScryfallId() {
+        return scryfallId;
+    }
+
+    public void setScryfallId(String scryfallId) {
+        this.scryfallId = scryfallId;
     }
 
 

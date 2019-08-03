@@ -5,12 +5,15 @@ package com.mtgborrow.borrow.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,8 +28,8 @@ public class User implements Serializable {
 
 
     @NotNull
-    @Size(max = 50)
-    @Column(name = "password")
+    @Size(min = 8, message = "Minimum password length: 8 characters")
+    @Column(name = "password", length = 500)
     private String password;
 
 
@@ -35,19 +38,23 @@ public class User implements Serializable {
     @Column(name = "username")
     private String username;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "owner")
-    @JsonManagedReference
-    private UserCollection userCollection;
+
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "user_group", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name="friend_group_id")})
     @JsonIgnoreProperties("users")
-    private Set<FriendGroup> groups = new HashSet<>();
+    private Set<FriendGroup> groups;
 
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Card> cards;
 
     public User() {
+        groups = new HashSet<>();
+        cards = new ArrayList<>();
     }
 
 
@@ -75,13 +82,7 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public UserCollection getUserCollection() {
-        return userCollection;
-    }
 
-    public void setUserCollection(UserCollection userCollection) {
-        this.userCollection = userCollection;
-    }
 
     public Set<FriendGroup> getGroups() {
         return groups;
@@ -91,4 +92,11 @@ public class User implements Serializable {
         this.groups = groups;
     }
 
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
 }

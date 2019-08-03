@@ -2,12 +2,15 @@ package com.mtgborrow.borrow.controllers;
 
 
 
+import com.mtgborrow.borrow.models.User;
 import com.mtgborrow.borrow.models.Card;
-import com.mtgborrow.borrow.models.RequestCard;
 import com.mtgborrow.borrow.services.CardService;
+import com.mtgborrow.borrow.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -17,21 +20,28 @@ public class CardController {
 
 
     CardService cardService;
+    UserService userService;
 
     @Autowired
-    public CardController(CardService cardService){
+    public CardController(CardService cardService, UserService userService){
         this.cardService = cardService;
+        this.userService = userService;
     }
 
 
-    @PostMapping("/addcards")
-    public void addCards(@RequestBody List<RequestCard> toBePersisted){
-        cardService.addCards(toBePersisted);
+    @PostMapping("/cards/bulk")
+    public void addCards(HttpServletRequest req, @RequestBody List<Card> toBePersisted){
+        User user = userService.whoami(req);
+
+        user.setCards(toBePersisted);
+
+        userService.save(user);
     }
 
     @GetMapping("/cards")
-    public List<Card> getAllCards(){
-        return cardService.getAllCards();
+    @ResponseStatus(HttpStatus.OK)
+    public List<Card> getAllCards(HttpServletRequest req){
+        User loggedIn = userService.whoami(req);
+        return loggedIn.getCards();
     }
-
 }

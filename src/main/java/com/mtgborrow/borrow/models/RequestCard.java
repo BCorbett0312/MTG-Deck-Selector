@@ -5,7 +5,7 @@ public class RequestCard {
 
     private Long id;
     private String name;
-    private Long multiverseId;
+    private String scryfallId;
     private Boolean isReprint;
 
 
@@ -28,12 +28,12 @@ public class RequestCard {
         this.name = name;
     }
 
-    public Long getMultiverseId() {
-        return multiverseId;
+    public String getScryfallId() {
+        return scryfallId;
     }
 
-    public void setMultiverseId(Long multiverseId) {
-        this.multiverseId = multiverseId;
+    public void setScryfallId(String scryfallId) {
+        this.scryfallId = scryfallId;
     }
 
     public Boolean getReprint() {
