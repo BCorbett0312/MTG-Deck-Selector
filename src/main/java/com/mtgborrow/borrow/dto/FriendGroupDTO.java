@@ -1,14 +1,14 @@
-package com.mtgborrow.borrow.models;
+package com.mtgborrow.borrow.dto;
 
 
 
-public class RequestGroup {
+public class FriendGroupDTO {
 
 
     private String name;
 
 
-    RequestGroup(){
+    FriendGroupDTO(){
 
     }
 

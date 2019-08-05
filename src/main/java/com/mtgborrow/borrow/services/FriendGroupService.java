@@ -1,7 +1,7 @@
 package com.mtgborrow.borrow.services;
 
 import com.mtgborrow.borrow.models.FriendGroup;
-import com.mtgborrow.borrow.models.RequestGroup;
+import com.mtgborrow.borrow.dto.FriendGroupDTO;
 import com.mtgborrow.borrow.models.User;
 import com.mtgborrow.borrow.repositories.FriendGroupRepository;
 import com.mtgborrow.borrow.repositories.UserRepository;
@@ -22,7 +22,7 @@ public class FriendGroupService {
     }
 
 
-    public FriendGroup createNewGroup(Long id, RequestGroup group){
+    public FriendGroup createNewGroup(Long id, FriendGroupDTO group){
         FriendGroup newGroup = new FriendGroup();
         User toSave = userRepository.getById(id);
         newGroup.setName(group.getName());

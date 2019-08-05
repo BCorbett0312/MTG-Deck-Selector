@@ -2,7 +2,6 @@ package com.mtgborrow.borrow.services;
 
 
 import com.mtgborrow.borrow.models.User;
-import com.mtgborrow.borrow.models.RequestUser;
 import com.mtgborrow.borrow.repositories.UserRepository;
 import com.mtgborrow.borrow.security.CustomException;
 import com.mtgborrow.borrow.security.JwtTokenProvider;
@@ -16,15 +15,15 @@ import org.springframework.stereotype.Service;
 
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
+
 
 @Service
 public class UserService {
 
 
-    UserRepository userRepository;
-    AuthenticationManager authenticationManager;
-    JwtTokenProvider jwtTokenProvider;
+    private UserRepository userRepository;
+    private AuthenticationManager authenticationManager;
+    private JwtTokenProvider jwtTokenProvider;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -35,30 +34,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
-
-
-    public User createNewUser(RequestUser requestUser){
-        User creatingCollection = parseFromRequest(requestUser);
-
-        return creatingCollection;
-    }
-
-    public User persistInitialUser(User user){
-        return this.userRepository.save(user);
-    }
-
-    public User getUserById(Long id){
-        return this.userRepository.getById(id);
-    }
-
-    public User parseFromRequest(RequestUser requestUser){
-        User newUser = new User();
-        newUser.setPassword(requestUser.getPassword());
-        newUser.setUsername(requestUser.getUsername());
-
-        return newUser;
-    }
 
     public User save(User user){
         return userRepository.save(user);

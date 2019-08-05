@@ -3,7 +3,6 @@ package com.mtgborrow.borrow.controllers;
 import com.mtgborrow.borrow.dto.UserDataDTO;
 import com.mtgborrow.borrow.dto.UserResponseDTO;
 import com.mtgborrow.borrow.models.User;
-import com.mtgborrow.borrow.models.RequestUser;
 import com.mtgborrow.borrow.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +27,6 @@ UserController {
         this.userService = userService;
     }
 
-
-
-
-
-    @PostMapping("/user")
-    public User createNewUser(@RequestBody RequestUser user){
-        return userService.createNewUser(user);
-    }
-
-    @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable Long id){
-        return userService.getUserById(id);
-    }
 
 
     @PostMapping("/signin")

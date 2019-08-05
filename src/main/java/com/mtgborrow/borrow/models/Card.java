@@ -17,7 +17,7 @@ public class Card implements Serializable {
     private Long id;
     private String name;
 
-    private String scryfallId;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "card_condition")
@@ -51,13 +51,7 @@ public class Card implements Serializable {
         this.condition = condition;
     }
 
-    public String getScryfallId() {
-        return scryfallId;
-    }
 
-    public void setScryfallId(String scryfallId) {
-        this.scryfallId = scryfallId;
-    }
 
 
 

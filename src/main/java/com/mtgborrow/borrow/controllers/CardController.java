@@ -2,6 +2,7 @@ package com.mtgborrow.borrow.controllers;
 
 
 
+import com.mtgborrow.borrow.dto.CardDTO;
 import com.mtgborrow.borrow.models.User;
 import com.mtgborrow.borrow.models.Card;
 import com.mtgborrow.borrow.services.CardService;
@@ -19,8 +20,8 @@ public class CardController {
 
 
 
-    CardService cardService;
-    UserService userService;
+    private CardService cardService;
+    private UserService userService;
 
     @Autowired
     public CardController(CardService cardService, UserService userService){
@@ -29,17 +30,10 @@ public class CardController {
     }
 
 
-//    @PostMapping("/cards/bulk")
-//    public void addCards(HttpServletRequest req, @RequestBody List<Card> toBePersisted){
-//        User user = userService.whoami(req);
-//        user.setCards(toBePersisted);
-//        userService.save(user);
-//    }
-
     @PostMapping("/cards")
-    public void addCards(HttpServletRequest req, @RequestBody Card toBePersisted){
+    public void addCards(HttpServletRequest req, @RequestBody CardDTO toBePersisted){
         User user = userService.whoami(req);
-        user.getCards().add(toBePersisted);
+        user.getCards().add(cardService.convertDtoToCard(toBePersisted));
         userService.save(user);
     }
 
