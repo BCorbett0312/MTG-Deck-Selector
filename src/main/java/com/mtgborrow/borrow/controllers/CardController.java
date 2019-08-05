@@ -29,14 +29,20 @@ public class CardController {
     }
 
 
-    @PostMapping("/cards/bulk")
-    public void addCards(HttpServletRequest req, @RequestBody List<Card> toBePersisted){
+//    @PostMapping("/cards/bulk")
+//    public void addCards(HttpServletRequest req, @RequestBody List<Card> toBePersisted){
+//        User user = userService.whoami(req);
+//        user.setCards(toBePersisted);
+//        userService.save(user);
+//    }
+
+    @PostMapping("/cards")
+    public void addCards(HttpServletRequest req, @RequestBody Card toBePersisted){
         User user = userService.whoami(req);
-
-        user.setCards(toBePersisted);
-
+        user.getCards().add(toBePersisted);
         userService.save(user);
     }
+
 
     @GetMapping("/cards")
     @ResponseStatus(HttpStatus.OK)
