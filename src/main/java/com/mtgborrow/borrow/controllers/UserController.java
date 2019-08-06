@@ -19,7 +19,7 @@ UserController {
 
 
     private ModelMapper modelMapper;
-    UserService userService;
+    private UserService userService;
 
     @Autowired
     public UserController(ModelMapper modelMapper, UserService userService) {
