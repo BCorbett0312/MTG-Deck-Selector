@@ -1,8 +1,7 @@
 package com.mtgborrow.borrow.services;
 
 import com.mtgborrow.borrow.models.FriendGroup;
-import com.mtgborrow.borrow.dto.FriendGroupDTO;
-import com.mtgborrow.borrow.models.User;
+import com.mtgborrow.borrow.dto.FriendGroupDataDTO;
 import com.mtgborrow.borrow.repositories.FriendGroupRepository;
 import com.mtgborrow.borrow.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +21,14 @@ public class FriendGroupService {
     }
 
 
-    public FriendGroup createNewGroup(Long id, FriendGroupDTO group){
-        FriendGroup newGroup = new FriendGroup();
-        User toSave = userRepository.getById(id);
-        newGroup.setName(group.getName());
-        newGroup.getUsers().add(toSave);
-        toSave.getGroups().add(newGroup);
-        userRepository.save(toSave);
+    public FriendGroup convertDtoToFriendGroup(FriendGroupDataDTO group){
+        FriendGroup toPersist = new FriendGroup();
+        toPersist.setName(group.getName());
+        return toPersist;
+    }
 
-        return friendGroupRepository.save(newGroup);
-
+    public FriendGroup getByName(String name){
+        return friendGroupRepository.getByName(name);
     }
 
 

@@ -12,7 +12,7 @@ public class FriendGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "friend_group_id")
+    @Column(name = "friend_group_id", unique = true, length = 100)
     private Long id;
     private String name;
 

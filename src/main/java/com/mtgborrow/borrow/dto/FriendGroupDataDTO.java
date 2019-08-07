@@ -2,13 +2,13 @@ package com.mtgborrow.borrow.dto;
 
 
 
-public class FriendGroupDTO {
+public class FriendGroupDataDTO {
 
 
     private String name;
 
 
-    FriendGroupDTO(){
+    FriendGroupDataDTO(){
 
     }
 

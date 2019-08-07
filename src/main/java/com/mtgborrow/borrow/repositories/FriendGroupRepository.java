@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FriendGroupRepository extends JpaRepository <FriendGroup, Long> {
+    FriendGroup getByName(String name);
 }
