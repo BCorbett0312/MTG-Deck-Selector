@@ -27,19 +27,19 @@ public class BorrowApplication {
 	}
 
 
-	@Bean
-	public CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Collections.singletonList("*")); // <-- you may change "*"
-		configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
-		configuration.setAllowCredentials(true);
-		configuration.setAllowedHeaders(Arrays.asList(
-				"Accept", "Origin", "Content-Type", "Depth", "User-Agent", "If-Modified-Since,",
-				"Cache-Control", "Authorization", "X-Req", "X-File-Size", "X-Requested-With", "X-File-Name"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
+//	@Bean
+//	public CorsConfigurationSource corsConfigurationSource() {
+//		CorsConfiguration configuration = new CorsConfiguration();
+//		configuration.setAllowedOrigins(Collections.singletonList("*")); // <-- you may change "*"
+//		configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
+//		configuration.setAllowCredentials(true);
+//		configuration.setAllowedHeaders(Arrays.asList(
+//				"Accept", "Origin", "Content-Type", "Depth", "User-Agent", "If-Modified-Since,",
+//				"Cache-Control", "Authorization", "X-Req", "X-File-Size", "X-Requested-With", "X-File-Name"));
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		source.registerCorsConfiguration("/**", configuration);
+//		return source;
+//	}
 
 
 

@@ -38,21 +38,14 @@ public class FriendGroupController {
     @PostMapping("/group")
     public void createNewGroup(HttpServletRequest req, @RequestBody FriendGroupDataDTO requestGroup){
         User user = userService.whoami(req);
-        if(friendGroupService.getByName(requestGroup.getName()) == null) {
-            user.getGroups().add(friendGroupService.convertDtoToFriendGroup(requestGroup));
-            userService.save(user);
-        }
+        friendGroupService.createNewGroup(requestGroup, user);
     }
 
     @GetMapping("/group")
     @ResponseStatus(HttpStatus.OK)
-    public Set<FriendGroupResponseDTO> getAllCards(HttpServletRequest req){
-        Set <FriendGroup> toReturn = userService.whoami(req).getGroups();
-        Set <FriendGroupResponseDTO> result = new HashSet<>();
-        for (FriendGroup group: toReturn) {
-            result.add(modelMapper.map(group, FriendGroupResponseDTO.class));
-        }
-        return result;
+    public Set<FriendGroupResponseDTO> getAllGroups(HttpServletRequest req){
+        User user = userService.whoami(req);
+        return friendGroupService.getAllGroups(user);
     }
 
 

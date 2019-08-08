@@ -4,9 +4,9 @@ package com.mtgborrow.borrow.controllers;
 
 import com.mtgborrow.borrow.dto.CardDTO;
 import com.mtgborrow.borrow.models.User;
-import com.mtgborrow.borrow.models.Card;
 import com.mtgborrow.borrow.services.CardService;
 import com.mtgborrow.borrow.services.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,29 +19,29 @@ import java.util.List;
 public class CardController {
 
 
-
+    private ModelMapper modelMapper;
     private CardService cardService;
     private UserService userService;
 
     @Autowired
-    public CardController(CardService cardService, UserService userService){
+    public CardController(CardService cardService, UserService userService, ModelMapper modelMapper){
         this.cardService = cardService;
         this.userService = userService;
+        this.modelMapper = modelMapper;
     }
 
 
     @PostMapping("/cards")
     public void addCards(HttpServletRequest req, @RequestBody CardDTO toBePersisted){
         User user = userService.whoami(req);
-        user.getCards().add(cardService.convertDtoToCard(toBePersisted));
-        userService.save(user);
+        cardService.saveCard(user, toBePersisted);
     }
 
 
     @GetMapping("/cards")
     @ResponseStatus(HttpStatus.OK)
-    public List<Card> getAllCards(HttpServletRequest req){
+    public List<CardDTO> getAllCards(HttpServletRequest req){
         User loggedIn = userService.whoami(req);
-        return loggedIn.getCards();
+        return cardService.getCards(loggedIn);
     }
 }
