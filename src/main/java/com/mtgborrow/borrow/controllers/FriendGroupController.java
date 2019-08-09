@@ -48,5 +48,12 @@ public class FriendGroupController {
         return friendGroupService.getAllGroups(user);
     }
 
+    @PostMapping("/group/invite")
+    @ResponseStatus(HttpStatus.OK)
+    public void addUserToGroup(HttpServletRequest req, @RequestParam String groupName, @RequestParam String userName){
+        User user = userService.whoami(req);
+        friendGroupService.addUserToGroup(user, groupName, userName);
+    }
+
 
 }

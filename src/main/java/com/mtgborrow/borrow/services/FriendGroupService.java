@@ -46,6 +46,17 @@ public class FriendGroupService {
         return result;
     }
 
+    public void addUserToGroup(User user, String channelName, String userName){
+        FriendGroup friendGroup = friendGroupRepository.getByName(channelName);
+        if(user.getGroups().contains(friendGroup)){
+            User toAddToGroup = userRepository.findByUsername(userName);
+            toAddToGroup.getGroups().add(friendGroup);
+            userRepository.save(toAddToGroup);
+        }
+
+    }
+
+
 
 
 
