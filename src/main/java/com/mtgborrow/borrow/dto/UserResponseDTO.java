@@ -4,8 +4,10 @@ package com.mtgborrow.borrow.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mtgborrow.borrow.models.Card;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class UserResponseDTO {
 
@@ -15,31 +17,33 @@ public class UserResponseDTO {
 
   private String email;
 
-  private List<CardDTO> cards;
-
-  @JsonIgnoreProperties("users")
-  private Set<FriendGroupResponseDTO> groups;
+//  private List<CardDTO> cards;
+//
+//  @JsonIgnoreProperties("users")
+//  private Set<FriendGroupResponseDTO> groups;
 
 
 
   public UserResponseDTO() {
+//    this.groups = new TreeSet<>(Comparator.comparing(FriendGroupResponseDTO::getName));
+
   }
 
-  public List<CardDTO> getCards() {
-    return cards;
-  }
-
-  public void setCards(List<CardDTO> cards) {
-    this.cards = cards;
-  }
-
-  public Set<FriendGroupResponseDTO> getGroups() {
-    return groups;
-  }
-
-  public void setGroups(Set<FriendGroupResponseDTO> groups) {
-    this.groups = groups;
-  }
+//  public List<CardDTO> getCards() {
+//    return cards;
+//  }
+//
+//  public void setCards(List<CardDTO> cards) {
+//    this.cards = cards;
+//  }
+//
+//  public Set<FriendGroupResponseDTO> getGroups() {
+//    return groups;
+//  }
+//
+//  public void setGroups(Set<FriendGroupResponseDTO> groups) {
+//    this.groups = groups;
+//  }
 
   public Integer getId() {
     return id;

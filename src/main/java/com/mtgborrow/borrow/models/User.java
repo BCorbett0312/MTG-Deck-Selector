@@ -11,10 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -53,7 +50,7 @@ public class User implements Serializable {
     private List<Card> cards;
 
     public User() {
-        groups = new HashSet<>();
+        groups = new TreeSet<>(Comparator.comparing(FriendGroup::getName));
         cards = new ArrayList<>();
     }
 

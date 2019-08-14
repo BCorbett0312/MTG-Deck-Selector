@@ -10,8 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class FriendGroupService {
@@ -39,7 +39,7 @@ public class FriendGroupService {
 
     public Set<FriendGroupResponseDTO> getAllGroups(User user){
         Set<FriendGroup> toConvert = user.getGroups();
-        Set<FriendGroupResponseDTO> result = new HashSet<>();
+        Set<FriendGroupResponseDTO> result = new TreeSet<>(Comparator.comparing(FriendGroupResponseDTO::getName));
         for(FriendGroup group: toConvert){
             result.add(modelMapper.map(group, FriendGroupResponseDTO.class));
         }
@@ -53,7 +53,10 @@ public class FriendGroupService {
             toAddToGroup.getGroups().add(friendGroup);
             userRepository.save(toAddToGroup);
         }
+    }
 
+    public FriendGroup getGroupById(Long id) {
+        return friendGroupRepository.getById(id);
     }
 
 

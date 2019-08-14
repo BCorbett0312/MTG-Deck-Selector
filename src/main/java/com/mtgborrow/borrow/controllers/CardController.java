@@ -12,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -32,9 +34,10 @@ public class CardController {
 
 
     @PostMapping("/cards")
-    public void addCards(HttpServletRequest req, @RequestBody CardDTO toBePersisted){
+    public List<CardDTO> addCards(HttpServletRequest req, @RequestBody CardDTO toBePersisted){
         User user = userService.whoami(req);
         cardService.saveCard(user, toBePersisted);
+        return cardService.getCards(user);
     }
 
 
@@ -43,5 +46,11 @@ public class CardController {
     public List<CardDTO> getAllCards(HttpServletRequest req){
         User loggedIn = userService.whoami(req);
         return cardService.getCards(loggedIn);
+    }
+
+    @GetMapping("/cards/{groupId}")
+    public List<CardDTO> getGroupCards(HttpServletRequest req, @PathVariable Long groupId){
+        User loggedIn = userService.whoami(req);
+        return cardService.getGroupCards(groupId, loggedIn);
     }
 }

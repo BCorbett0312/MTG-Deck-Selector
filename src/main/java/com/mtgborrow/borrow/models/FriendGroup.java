@@ -3,8 +3,10 @@ package com.mtgborrow.borrow.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 
 @Entity
@@ -22,7 +24,7 @@ public class FriendGroup {
                 CascadeType.MERGE},
                 mappedBy = "groups")
     @JsonIgnoreProperties("groups")
-    private Set<User> users = new HashSet<>();
+    private Set<User> users = new TreeSet<>(Comparator.comparing(User::getUsername));
 
 
 
