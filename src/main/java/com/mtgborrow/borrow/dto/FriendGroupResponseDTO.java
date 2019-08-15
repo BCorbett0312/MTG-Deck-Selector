@@ -10,8 +10,6 @@ public class FriendGroupResponseDTO {
 
     private String name;
 
-
-
     @JsonIgnoreProperties("groups")
     private Set<UserResponseDTO> users;
 
